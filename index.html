@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RiverCityRedo</title>
+    <style>
+        body {
+            background: black;
+            overflow: hidden;
+        }
+
+        canvas {}
+
+        #debuggerdata {
+            background: grey;
+            color: white;
+            font-size: 2em;
+            margin: 0;
+            padding: 0;
+
+            width: 960px;
+            border: 2px solid black;
+            border-radius: 20px;
+            min-height: 1em;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <canvas id="view"></canvas>
+        <div id='debuggerdata'>
+            <span id='debugoutput'> </span>
+
+        </div>
+
+        <script src="/sys/_clog.js"></script>
+        <script>
+            //            const global = {};
+
+            let global = {
+                fps: 60,
+                raw_scale: 32,
+                //    draw_scale: 512 / 2,
+                draw_scale: 64,
+                draw_scaleY: 64,
+                //                draw_scaleY: 64 * 1.777,
+                //    draw_scaleY: 64 * 3.2,
+                ctx: undefined,
+                canvas: undefined,
+                spritesheet: undefined,
+                framecount: 0,
+            }
+        </script>
+        <!--scripts area-->
+
+        <script src="/sys/_camera_system.js"></script>
+        <script src="/sys/_loader.js"></script>
+        <script src="/sys/_canvas.js"></script>
+        <script src="/sys/_canvas_functions.js"></script>
+        <script src="/sys/_MAIN.js"></script>
+        <script src="/sys/_maths.js"></script>
+        <script src="/sys/_gamepad.js"></script>
+
+
+        <script src="/ent/Prisoner.js"></script>
+    </center>
+</body></html>
