@@ -1,8 +1,12 @@
 // https://developer.mozilla.org/en-US/docs/Web/API/Gamepad_API/Using_the_Gamepad_API
 
-const isDebugging = true;
+const isDebugging = false;
 
 let joystick_state = [];
+
+//lhorz,lvert,rhorz,rvert::
+let axis_state = [];
+
 
 // Disconnecting::
 window.addEventListener("gamepaddisconnected", function (e) {
@@ -75,12 +79,23 @@ function updateStatus() {
         for (i = 0; i < controller.axes.length; i++) {
             // accessing the AXIS DATA:
             // percentage style: (controller.axes[i].toFixed(4) * 100).toFixed(1)
+            
+            
+            axis_state[i] = (controller.axes[i].toFixed(4) * 100).toFixed(1);
+            
+            if (axis_state[i] < 9 && axis_state[i] > -9){
+                axis_state[i]= 0;
+            }
+            
+            
             if (isDebugging) {
 
                 if ((controller.axes[i].toFixed(4) * 100).toFixed(1) > 10 || (controller.axes[i].toFixed(4) * 100).toFixed(1) < -10) {
 //                    dbo.innerHTML=`Axis:${i} Value:${(controller.axes[i].toFixed(4) * 100).toFixed(1)}`;
 //                    console.log(`Axis:${i} Value:${(controller.axes[i].toFixed(4) * 100).toFixed(1)}`);
-                    clog(`Axis:${i} Value:${(controller.axes[i].toFixed(4) * 100).toFixed(1)}`);
+//                    clog(`Axis:${i} Value:${(controller.axes[i].toFixed(4) * 100).toFixed(1)}`);
+                    
+                    
                 }
 
             }

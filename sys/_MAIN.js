@@ -18,9 +18,12 @@ function increment_global_frame() {
     }
 }
 
-function renderloop() {
+function main_loop() {
+    // geartick:
     increment_global_frame();
+    // mutations:
     dcam.mutates(0);
+    process_gamepad_inputs();
     // draw:
     drawgym(); //- scene
     drawEntities(); //- players
@@ -36,7 +39,7 @@ function initmain() {
     //setup stuff - push characters to renderer.
     createPlayer();
     // set as variable then make control to kill it.  TODO::
-    setInterval(renderloop, 1000 / 60);
+    setInterval(main_loop, 1000 / 60);
 }
 
 clog('_MAIN.js');

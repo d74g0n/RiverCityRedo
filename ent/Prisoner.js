@@ -22,15 +22,13 @@ class Prisoner {
         // drawing requirement;
         this.isLeft = isLeft;
         this.isJumping = false;
-
         this.jumppwr = 10;
-
-        this.friction = 0.9; // GLOBALIZE.
+        this.shoefriction = 0.5; // GLOBALIZE.
 
         this.applyfriction = function () {
             if (!this.isJumping) {
-                this.vx = this.vx * this.friction;
-                this.vy = this.vy * this.friction;
+                this.vx = this.vx * this.shoefriction;
+                this.vy = this.vy * this.shoefriction;
             }
         }
 
@@ -49,7 +47,7 @@ class Prisoner {
         this.vy = 0;
         this.vcap = 15;
         this.vmin = 0.95;
-        this.speed = 1;
+        this.speed = 10;
 
         this.capvelocity = function () {
             if (this.vx > this.vcap) {
@@ -108,7 +106,7 @@ class Prisoner {
         this.noiseinterval = 20;
 
         this.noise = function () {
-//            console.log(global.framecount);
+            //            console.log(global.framecount);
             if (this.isNoisy) {
 
                 if (global.framecount % this.noiseinterval == 0) {
@@ -122,7 +120,7 @@ class Prisoner {
         }
 
         //refactor::
-//        this.headadjustx = -8;
+        //        this.headadjustx = -8;
         this.headadjustx = -2;
         this.headadjusty = 0;
 
@@ -154,7 +152,7 @@ class Prisoner {
 
 
         this.frame = getRandomArbitrary(4, 6).toFixed(0);
-        
+
         console.log(`Prisoner '${this.id} created with frame: ${this.frame}`);
 
         this.clearself = function () {
@@ -220,8 +218,10 @@ class Prisoner {
             this.move();
             btx.resetTransform();
             this.draw_body();
-//            this.stayAboveGround(); //refactorer
-            this.frame++;
+            this.stayAboveGround(); //refactorer
+            if ( global.framecount % 3 == 0) {
+                this.frame++;
+            }
             if (this.frame > 6) {
                 this.frame = 4;
             }
